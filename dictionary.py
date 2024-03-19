@@ -1,12 +1,20 @@
 class Dictionary:
     def __init__(self):
-        pass
+        self._dict = []
 
     def loadDictionary(self,path):
-        pass
+        infile = open(path, "r", encoding="utf-8")
+        riga = infile.readline()
+        while riga != "":
+            parola = riga.rstrip().lower()
+            self._dict.append(parola)
+            riga = infile.readline()
+        infile.close()
+
 
     def printAll(self):
-        pass
+        for parola in self._dict:
+            print(parola)
 
 
     @property

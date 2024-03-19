@@ -6,6 +6,7 @@ while(True):
     sc.printMenu()
 
     txtIn = input()
+
     # Add input control here!
 
     if int(txtIn) == 1:

@@ -5,12 +5,31 @@ import richWord as rw
 class MultiDictionary:
 
     def __init__(self):
-       pass
+       self.dizionario = d.Dictionary()
 
     def printDic(self, language):
-        pass
+        self.inizializzazioneDizionario(language)
+        self.dizionario.printAll()
+
 
     def searchWord(self, words, language):
-        pass
+        parole = []
+        self.inizializzazioneDizionario(language)
+        for word in words:
+            controllo = rw.RichWord(word)
+            if word in self.dizionario.dict:
+                controllo.corretta= True
+            else:
+                controllo.corretta=False
+
+            parole.append(controllo)
+        return parole
 
 
+    def inizializzazioneDizionario(self,language):
+        if language == "italian":
+            self.dizionario.loadDictionary("resources/Italian.txt")
+        elif language == "english":
+            self.dizionario.loadDictionary("resources/English.txt")
+        elif language == "spanish":
+            self.dizionario.loadDictionary("resources/Spanish.txt")
