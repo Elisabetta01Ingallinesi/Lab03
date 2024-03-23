@@ -13,16 +13,43 @@ class SpellChecker:
         testo = replaceChars(txtIn)
         parole = testo.lower().split(" ")
 
-        parole= self.multiDictionary.searchWord(parole, language)
-        for parola in parole:
+        print("---------------------------------------------------")
+        parole_1= self.multiDictionary.searchWord(parole, language)
+        for parola in parole_1:
             if parola.corretta == False:
                 sbagliate.append(parola)
         end_time = time.time()
+        print(f"Numero di parole sbagliate: {len(sbagliate)}")
         for parola in sbagliate:
             print(parola)
-            print(f"Numero di parole sbagliate: {len(sbagliate)}")
-            print(f"Time elapsed: {end_time-start_time}")
+        print(f"Time elapsed: {end_time - start_time}")
+        print("---------------------------------------------------")
 
+        parole_1=[]
+        sbagliate = []
+        parole_1 = self.multiDictionary.searchWordLinear(parole, language)
+        for parola in parole_1:
+            if parola.corretta == False:
+                sbagliate.append(parola)
+        end_time = time.time()
+        print(f"Numero di parole sbagliate: {len(sbagliate)}")
+        for parola in sbagliate:
+            print(parola)
+        print(f"Time elapsed: {end_time-start_time}")
+        print("---------------------------------------------------")
+
+        parole_1 = []
+        sbagliate = []
+        parole_1 = self.multiDictionary.searchWordDichotomic(parole, language)
+        for parola in parole_1:
+            if parola.corretta == False:
+                sbagliate.append(parola)
+        end_time = time.time()
+        print(f"Numero di parole sbagliate: {len(sbagliate)}")
+        for parola in sbagliate:
+            print(parola)
+        print(f"Time elapsed: {end_time - start_time}")
+        print("---------------------------------------------------")
 
 
     def printMenu(self):

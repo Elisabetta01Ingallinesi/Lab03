@@ -21,8 +21,56 @@ class MultiDictionary:
                 controllo.corretta= True
             else:
                 controllo.corretta=False
-
             parole.append(controllo)
+        return parole
+
+    def searchWordLinear(self, words, language):
+        parole = []
+        self.inizializzazioneDizionario(language)
+        for word in words:
+            find = False
+            controllo = rw.RichWord(word)
+            for element in self.dizionario.dict:
+                if element == word:
+                    controllo.corretta = True
+                    parole.append(controllo)
+                    find = True
+                    break
+            if find==False:
+                controllo.corretta = False
+                parole.append(controllo)
+
+        return parole
+
+    def searchWordDichotomic(self, words, language):
+        parole = []
+        self.inizializzazioneDizionario(language)
+
+
+        meta_lunghezza = len(self.dizionario.dict) // 2
+        elem_centrale = self.dizionario.dict[meta_lunghezza]
+        for word in words:
+            find = False
+            controllo = rw.RichWord(word)
+            if word == elem_centrale:
+                controllo.corretta = True
+                parole.append(controllo)
+                find = True
+            elif elem_centrale < word:
+                for i in range(meta_lunghezza,0, -1):
+                    if word == self.dizionario.dict[i]:
+                        controllo.corretta = True
+                        parole.append(controllo)
+                        find = True
+            elif elem_centrale > word:
+                for i in range(meta_lunghezza, len(self.dizionario.dict)):
+                    if word == self.dizionario.dict[i]:
+                        controllo.corretta = True
+                        parole.append(controllo)
+                        find = True
+            if find == False:
+                controllo.corretta = False
+                parole.append(controllo)
         return parole
 
 
